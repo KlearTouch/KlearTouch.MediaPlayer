@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "KlearTouchApp.MediaPlayer.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "KlearTouchApp.MediaPlayer.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+﻿<Window
+    x:Class="KlearTouchApp.MediaPlayer.WinUI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid>
+        <!--MediaPlayerElement x:Name="MediaPlayerElement" AreTransportControlsEnabled="True" /-->
+        <Border x:Name="MediaPlayerElementContainer" />
+
+        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center"  VerticalAlignment="Top"  Background="#99000000">
+            <Button Content="Open File..." Click="OpenFile" />
+            <Button Content="Open Uri" Click="OpenUri" />
+            <Button Content="Play" Click="Play" />
+            <Button Content="Pause" Click="Pause" />
+            <Button Content="CleanUp MediaPlayer" Click="CleanUpMediaPlayer" />
+            <Button Content="Toggle TransportControls" Click="ToggleTransportControls" />
+        </StackPanel>
+    </Grid>
+</Window>
