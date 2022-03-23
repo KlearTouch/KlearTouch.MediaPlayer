@@ -1,0 +1,14 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)/bld/$(MSBuildProjectName)/bin/</BaseOutputPath>
+    <MSBuildProjectExtensionsPath>$(MSBuildThisFileDirectory)/bld/$(MSBuildProjectName)/obj/</MSBuildProjectExtensionsPath>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)/bld/$(MSBuildProjectName)/obj/</BaseIntermediateOutputPath>
+  </PropertyGroup>
+
+</Project>
