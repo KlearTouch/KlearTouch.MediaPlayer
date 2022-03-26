@@ -152,7 +152,8 @@ public class MediaTransportControls : UserControl, IMediaTransportControls
 
     private void Reset()
     {
-        TimeRemainingElement.Text = TimeElapsedElement.Text = "";
+        TimeRemainingElement.Text = ToString(TimeSpan.Zero);
+        TimeElapsedElement.Text = ToString(TimeSpan.Zero) + " / " + ToString(TimeSpan.Zero);
         ProgressSlider.Value = 0;
         ProgressSlider.Minimum = 0;
         ProgressSlider.Maximum = 0;
