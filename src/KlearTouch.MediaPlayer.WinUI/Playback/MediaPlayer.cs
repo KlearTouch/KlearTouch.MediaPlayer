@@ -75,6 +75,7 @@ public class MediaPlayer : IMediaPlayer
             {
                 null => null,
                 FileMediaSource ms => UwpMediaSource.CreateFromStorageFile(ms.File),
+                StreamMediaSource ms => UwpMediaSource.CreateFromStream(ms.Stream, ms.ContentType),
                 UriMediaSource ms => UwpMediaSource.CreateFromUri(ms.Uri),
                 _ => throw new ArgumentOutOfRangeException(nameof(value))
             };
