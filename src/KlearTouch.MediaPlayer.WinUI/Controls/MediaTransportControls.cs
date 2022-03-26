@@ -35,6 +35,7 @@ public class MediaTransportControls : UserControl, IMediaTransportControls
                 _mediaPlayer.PlaybackSession.PositionChanged -= OnPositionChanged;
             }
             _mediaPlayer = value;
+            Reset();
             if (_mediaPlayer is not null)
             {
                 _mediaPlayer.PlaybackSession.PlaybackStateChanged += OnPlaybackSessionOnPlaybackStateChanged;
@@ -145,6 +146,17 @@ public class MediaTransportControls : UserControl, IMediaTransportControls
         commandBar.Children!.Add(playPauseButton);
 
         Content = rootGrid;
+
+        Reset();
+    }
+
+    private void Reset()
+    {
+        TimeRemainingElement.Text = TimeElapsedElement.Text = "";
+        ProgressSlider.Value = 0;
+        ProgressSlider.Minimum = 0;
+        ProgressSlider.Maximum = 0;
+        PlayPauseSymbol.Glyph = "\xE102";
     }
 
     private void OnProgressSliderValueChanged(object sender, RangeBaseValueChangedEventArgs e)
