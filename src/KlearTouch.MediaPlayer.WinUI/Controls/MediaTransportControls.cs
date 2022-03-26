@@ -98,6 +98,8 @@ public class MediaTransportControls : UserControl, IMediaTransportControls
     private TextBlock TimeRemainingElement { get; }
     private TextBlock TimeElapsedElement { get; }
     private FontIcon PlayPauseSymbol { get; }
+    private const string PlayGlyph = "\xE102";
+    private const string PauseGlyph = "\xE103";
 
     internal MediaTransportControls()
     {
@@ -141,7 +143,7 @@ public class MediaTransportControls : UserControl, IMediaTransportControls
         Grid.SetRow(commandBar, 1);
         controlPanelGrid.Children.Add(commandBar);
 
-        var playPauseButton = new AppBarButton { Width = buttonSize, Height = buttonSize, Icon = PlayPauseSymbol = new FontIcon { Glyph = "\xE102" }, HorizontalAlignment = HorizontalAlignment.Center };
+        var playPauseButton = new AppBarButton { Width = buttonSize, Height = buttonSize, Icon = PlayPauseSymbol = new FontIcon { Glyph = PlayGlyph }, HorizontalAlignment = HorizontalAlignment.Center };
         playPauseButton.Click += OnPlayPause;
         commandBar.Children!.Add(playPauseButton);
 
@@ -157,7 +159,7 @@ public class MediaTransportControls : UserControl, IMediaTransportControls
         ProgressSlider.Value = 0;
         ProgressSlider.Minimum = 0;
         ProgressSlider.Maximum = 0;
-        PlayPauseSymbol.Glyph = "\xE102";
+        PlayPauseSymbol.Glyph = PlayGlyph;
     }
 
     private void OnProgressSliderValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -188,7 +190,7 @@ public class MediaTransportControls : UserControl, IMediaTransportControls
         DispatcherQueue?.TryEnqueue(() =>
 #endif
         {
-            PlayPauseSymbol.Glyph = sender.PlaybackState is MediaPlaybackState.None or MediaPlaybackState.Opening or MediaPlaybackState.Paused ? "\xE102" : "\xE103";
+            PlayPauseSymbol.Glyph = sender.PlaybackState is MediaPlaybackState.None or MediaPlaybackState.Opening or MediaPlaybackState.Paused ? PlayGlyph : PauseGlyph;
         });
     }
 
