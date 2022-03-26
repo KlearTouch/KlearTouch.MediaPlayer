@@ -6,6 +6,8 @@ using MediaSource = Microsoft.UI.Media.Core.MediaSource;
 
 namespace KlearTouchApp.MediaPlayer.WinUI
 {
+    public class MediaPlayerElement : Microsoft.UI.Xaml.Controls.MediaPlayerElement { }
+
     public sealed partial class MainWindow
     {
         public Microsoft.UI.Xaml.Controls.MediaPlayerElement MediaPlayerElement { get; } = new() { AreTransportControlsEnabled = true };
@@ -14,7 +16,7 @@ namespace KlearTouchApp.MediaPlayer.WinUI
         {
             InitializeComponent();
 
-            Title = "KlearTouch MediaPlayer for WinUI 3";
+            Title = "KlearTouch MediaPlayer for WinUI 3 (XAML)";
 
             MediaPlayerElementContainer!.Child = MediaPlayerElement;
         }
