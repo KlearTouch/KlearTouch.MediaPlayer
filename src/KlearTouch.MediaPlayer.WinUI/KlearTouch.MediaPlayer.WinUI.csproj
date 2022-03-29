@@ -28,11 +28,11 @@
     <NeutralLanguage>en</NeutralLanguage>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
 
-    <Version>0.5.0.0</Version>
-    <FileVersion>0.5.0.0</FileVersion>
-    <InformationalVersion>0.5</InformationalVersion>
-    <AssemblyVersion>0.5.0.0</AssemblyVersion>
-    <PackageVersion>0.5.0-beta</PackageVersion>
+    <Version>0.6.0.0</Version>
+    <FileVersion>0.6.0.0</FileVersion>
+    <InformationalVersion>0.6</InformationalVersion>
+    <AssemblyVersion>0.6.0.0</AssemblyVersion>
+    <PackageVersion>0.6.0-beta</PackageVersion>
 
   </PropertyGroup>
 
