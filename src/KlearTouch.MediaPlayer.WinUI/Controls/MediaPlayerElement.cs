@@ -93,12 +93,20 @@ public class MediaPlayerElement : UserControl, IMediaPlayerElement
 
     private void OnResize() // if (MediaPlayer is paused) we need to ask it to re-render a frame // TODO: Find a better solution
     {
-        if (UwpMediaPlayer?.CurrentState is not global::Windows.Media.Playback.MediaPlayerState.Paused) return;
-        var duration = UwpMediaPlayer.PlaybackSession!.NaturalDuration;
-        if (duration > TimeSpan.Zero && UwpMediaPlayer.PlaybackSession.Position + TimeSpan.FromSeconds(0.042 * 2) < duration)
-            UwpMediaPlayer.StepForwardOneFrame();
+        var oneFrameTimeAt24Fps = TimeSpan.FromSeconds(1.0 / 24.0);
+        if (MediaPlayer?.PlaybackSession.PlaybackState is not MediaPlaybackState.Paused) return;
+        var duration = MediaPlayer.PlaybackSession.NaturalDuration;
+        if (duration < oneFrameTimeAt24Fps * 2) return;
+        if (MediaPlayer.PlaybackSession.Position < oneFrameTimeAt24Fps || MediaPlayer.PlaybackSession.Position + oneFrameTimeAt24Fps <= duration)
+        {
+            MediaPlayer.PlaybackSession.Position += oneFrameTimeAt24Fps;
+            MediaPlayer.PlaybackSession.Position -= oneFrameTimeAt24Fps;
+        }
         else
-            UwpMediaPlayer.StepBackwardOneFrame();
+        {
+            MediaPlayer.PlaybackSession.Position -= oneFrameTimeAt24Fps;
+            MediaPlayer.PlaybackSession.Position += oneFrameTimeAt24Fps;
+        }
     }
 
     private void OnVideoFrameAvailable(UwpMediaPlayer sender, object? args)
