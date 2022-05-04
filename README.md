@@ -1,4 +1,4 @@
-﻿[![](https://img.shields.io/nuget/dt/KlearTouch.MediaPlayer.WinUI.svg?label=NuGet%20Package%20for%20WinUI%203&style=for-the-badge&logo=NuGet)](https://www.nuget.org/packages/KlearTouch.MediaPlayer.WinUI/)
+﻿[![NuGet Package for WinUI 3](https://img.shields.io/nuget/v/KlearTouch.MediaPlayer.WinUI.svg)](https://www.nuget.org/packages/KlearTouch.MediaPlayer.WinUI/)
 
 # KlearTouch.MediaPlayer
 Media Player Element for WinUI 3 based on [the one in UWP](https://docs.microsoft.com/en-us/uwp/api/Windows.UI.Xaml.Controls.MediaPlayerElement).
