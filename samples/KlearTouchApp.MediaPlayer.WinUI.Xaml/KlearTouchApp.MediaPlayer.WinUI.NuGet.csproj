@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="KlearTouch.MediaPlayer.WinUI" Version="0.6.0-beta" />
+    <PackageReference Include="KlearTouch.MediaPlayer.WinUI" Version="0.7.0-beta" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
     <Manifest Include="$(ApplicationManifest)" />
