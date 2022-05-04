@@ -13,7 +13,7 @@
     <Title>KlearTouch.MediaPlayer for WinUI 3</Title>
     <!--AssemblyTitle>KlearTouch.MediaPlayer for WinUI 3</AssemblyTitle-->
     <Description>Media Player Element for WinUI 3 based on the one in UWP.</Description>
-    <PackageTags>MediaPlayerElement;WinUI3</PackageTags>
+    <PackageTags>MediaPlayerElement;Video;Audio;WinUI3</PackageTags>
     <PackageId>KlearTouch.MediaPlayer.WinUI</PackageId>
     <Copyright>© 2022 KlearTouch, Pierre Henri KT. Licensed under the MIT license.</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
