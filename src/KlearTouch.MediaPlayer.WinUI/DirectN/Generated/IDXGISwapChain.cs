@@ -30,5 +30,29 @@ namespace DirectN
 
         [PreserveSig]
         HRESULT GetBuffer(/* [in] */ uint Buffer, /* [annotation][in] _In_ */ [MarshalAs(UnmanagedType.LPStruct)] Guid riid, /* [annotation][out][in] _COM_Outptr_ */ [MarshalAs(UnmanagedType.IUnknown)] out object ppSurface);
+
+        [PreserveSig]
+        HRESULT SetFullscreenState();
+
+        [PreserveSig]
+        HRESULT GetFullscreenState();
+
+        [PreserveSig]
+        HRESULT GetDesc(/* [annotation][out] _Out_ */ out DXGI_SWAP_CHAIN_DESC pDesc);
+
+        [PreserveSig]
+        HRESULT ResizeBuffers(/* [in] */ uint BufferCount, /* [in] */ uint Width, /* [in] */ uint Height, /* [in] */ DXGI_FORMAT NewFormat, /* [in] */ uint SwapChainFlags);
+
+        [PreserveSig]
+        HRESULT ResizeTarget();
+
+        [PreserveSig]
+        HRESULT GetContainingOutput();
+
+        [PreserveSig]
+        HRESULT GetFrameStatistics();
+
+        [PreserveSig]
+        HRESULT GetLastPresentCount();
     }
 }

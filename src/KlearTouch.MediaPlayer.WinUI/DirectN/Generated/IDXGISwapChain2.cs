@@ -1,11 +1,11 @@
-﻿// c:\program files (x86)\windows kits\10\include\10.0.22000.0\shared\dxgi1_2.h(1307,5)
+﻿// c:\program files (x86)\windows kits\10\include\10.0.22000.0\shared\dxgi1_3.h(395,5)
 using System;
 using System.Runtime.InteropServices;
 
 namespace DirectN
 {
-    [ComImport, Guid("790a45f7-0d42-4876-983a-0a55cfe6f4aa"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface IDXGISwapChain1 : IDXGISwapChain
+    [ComImport, Guid("a8be2ac4-199f-4946-b331-79599fb98de7"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    internal interface IDXGISwapChain2 : IDXGISwapChain1
     {
         // IDXGIObject
         [PreserveSig]
@@ -57,43 +57,69 @@ namespace DirectN
 
         // IDXGISwapChain1
         [PreserveSig]
-        HRESULT GetDesc1();
+        new HRESULT GetDesc1();
 
         [PreserveSig]
-        HRESULT GetFullscreenDesc();
+        new HRESULT GetFullscreenDesc();
 
         [PreserveSig]
-        HRESULT GetHwnd();
+        new HRESULT GetHwnd();
 
         [PreserveSig]
-        HRESULT GetCoreWindow();
+        new HRESULT GetCoreWindow();
 
         [PreserveSig]
-        HRESULT Present1();
+        new HRESULT Present1();
 
         [PreserveSig]
-        bool IsTemporaryMonoSupported();
+        new bool IsTemporaryMonoSupported();
 
         [PreserveSig]
-        HRESULT GetRestrictToOutput();
+        new HRESULT GetRestrictToOutput();
 
         [PreserveSig]
-        HRESULT SetBackgroundColor();
+        new HRESULT SetBackgroundColor();
 
         [PreserveSig]
-        HRESULT GetBackgroundColor();
+        new HRESULT GetBackgroundColor();
 
         [PreserveSig]
-        HRESULT SetRotation();
+        new HRESULT SetRotation();
 
         [PreserveSig]
-        HRESULT GetRotation();
+        new HRESULT GetRotation();
+
+        // IDXGISwapChain2
+        [PreserveSig]
+        HRESULT SetSourceSize();
+
+        [PreserveSig]
+        HRESULT GetSourceSize();
+
+        [PreserveSig]
+        HRESULT SetMaximumFrameLatency();
+
+        [PreserveSig]
+        HRESULT GetMaximumFrameLatency();
+
+        [PreserveSig]
+        IntPtr GetFrameLatencyWaitableObject();
+
+        [PreserveSig]
+        HRESULT SetMatrixTransform(ref DXGI_MATRIX_3X2_F pMatrix);
+
+        [PreserveSig]
+        HRESULT GetMatrixTransform(/* [annotation][out] _Out_ */ out DXGI_MATRIX_3X2_F pMatrix);
     }
 
-    [StructLayout(LayoutKind.Sequential, Size = 72)]
-    internal struct DXGI_SWAP_CHAIN_DESC // Simplified
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct DXGI_MATRIX_3X2_F
     {
-        public uint Width;
-        public uint Height;
+        public float _11;
+        public float _12;
+        public float _21;
+        public float _22;
+        public float _31;
+        public float _32;
     }
 }

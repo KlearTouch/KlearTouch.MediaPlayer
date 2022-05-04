@@ -14,7 +14,7 @@ namespace Microsoft.UI.Xaml.Controls;
 internal class SwapChainSurface : IDisposable
 {
     private bool _rendering;
-    private IComObject<IDXGISwapChain1>? _swapChain;
+    private IComObject<IDXGISwapChain2>? _swapChain;
 
     private SwapChainPanel SwapChainPanel { get; }
 
@@ -30,7 +30,7 @@ internal class SwapChainSurface : IDisposable
         {
             try
             {
-                _swapChain?.Object.ResizeBuffers(2, PanelWidth, PanelHeight, DXGI_FORMAT.DXGI_FORMAT_UNKNOWN, 0).ThrowOnError();
+                OnSizeChanged();
                 onResize();
             }
             catch (ObjectDisposedException)
@@ -77,9 +77,10 @@ internal class SwapChainSurface : IDisposable
 
         var dxgiDevice = d3dDevice.As<IDXGIDevice>();
         using var dxgiFactory = dxgiDevice.GetAdapter().GetParent<IDXGIFactory2>();
-        _swapChain = dxgiFactory.CreateSwapChainForComposition<IDXGISwapChain1>(d3dDevice, swapChainDescription);
+        _swapChain = dxgiFactory.CreateSwapChainForComposition<IDXGISwapChain2>(d3dDevice, swapChainDescription);
 
         SetSwapChain(false);
+        OnSizeChanged(true);
     }
 
     public void Dispose()
@@ -129,7 +130,7 @@ internal class SwapChainSurface : IDisposable
                 var swapChain = _swapChain.Object;
                 swapChain.GetDesc(out var desc).ThrowOnError();
                 if (desc.Width != PanelWidth || desc.Height != PanelHeight)
-                    swapChain.ResizeBuffers(2, PanelWidth, PanelHeight, DXGI_FORMAT.DXGI_FORMAT_UNKNOWN, 0).ThrowOnError();
+                    OnSizeChanged();
 
                 using var dxgiSurface = swapChain.GetBuffer<IDXGISurface>(0);
                 var dxgiSurfacePtr = Marshal.GetComInterfaceForObject<IDXGISurface, IDXGISurface>(dxgiSurface.Object);
@@ -156,6 +157,18 @@ internal class SwapChainSurface : IDisposable
             }
             _rendering = false;
         });
+    }
+
+    private void OnSizeChanged(bool setMatrixTransformOnly = false)
+    {
+        DXGI_MATRIX_3X2_F inverseScale = new()
+        {
+            _11 = 1.0f / SwapChainPanel.CompositionScaleX,
+            _22 = 1.0f / SwapChainPanel.CompositionScaleY
+        };
+        _swapChain?.Object.SetMatrixTransform(inverseScale).ThrowOnError(); // Cancel out the scaling
+        if (!setMatrixTransformOnly)
+            _swapChain?.Object.ResizeBuffers(2, PanelWidth, PanelHeight, DXGI_FORMAT.DXGI_FORMAT_UNKNOWN, 0).ThrowOnError();
     }
 
     [DllImport("d3d11.dll", EntryPoint = nameof(CreateDirect3D11SurfaceFromDXGISurface), SetLastError = true, CharSet = CharSet.Unicode, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
