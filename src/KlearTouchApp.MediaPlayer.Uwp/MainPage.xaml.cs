@@ -23,6 +23,8 @@ namespace KlearTouchApp.MediaPlayer.Uwp
         {
             InitializeComponent();
 
+            Windows.UI.ViewManagement.ApplicationView.GetForCurrentView()!.SetPreferredMinSize(new(192, 48));
+
             Root!.Children!.Add(MediaPlayerElement = new MediaPlayerElement { AreTransportControlsEnabled = true });
 
             var controls = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Top, Background = new SolidColorBrush(Color.FromArgb(0x99, 0, 0, 0)) };
